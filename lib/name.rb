@@ -31,10 +31,11 @@ class Name
   TIEFLING_FEMININE_FIRST_NAMES = ["Affyria", "Cataclysmia", "Domitia", "Dorethau", "Excellence", "Hacari", "Iritra", "Lachira", "Levatra", "Mecretia", "Milvia", "Nericia", "Precious", "Rain", "Samantia", "Sunshine", "Tenerife", "Traya", "Velavia", "Zaidi", "Zethaya"]
   TIEFLING_LAST_NAMES = ["Amarzian", "Carnago", "Domarien", "Iscitan", "Meluzan", "Menetrian", "Paradas", "Romazi", "Sarzan", "Serechor", "Shadowhorn", "Szereban", "Torzalan", "Trelenus", "Trevethor", "Tryphon", "Vadu", "Vrago"]
 
-  def self.generate(race, descriptor)
-    first_name = const_get("#{race.underscore.upcase}_#{descriptor.upcase}_FIRST_NAMES").sample
-    last_name  = const_get("#{race.underscore.upcase}_LAST_NAMES").sample 
+  def self.first(race, descriptor)
+    const_get("#{race.underscore.upcase}_#{descriptor.upcase}_FIRST_NAMES").sample
+  end
 
-    "#{first_name} #{last_name}"
+  def self.last(race)
+    const_get("#{race.underscore.upcase}_LAST_NAMES").sample 
   end
 end

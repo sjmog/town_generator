@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216014528) do
+ActiveRecord::Schema.define(version: 20171216133452) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer "strength"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20171216014528) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.string "name"
     t.integer "town_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,6 +33,8 @@ ActiveRecord::Schema.define(version: 20171216014528) do
     t.integer "level"
     t.string "race"
     t.string "descriptor"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["town_id"], name: "index_people_on_town_id"
   end
 

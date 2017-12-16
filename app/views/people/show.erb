@@ -24,3 +24,17 @@
       <td><%= @person.charisma %> (<%= modifier(@person.charisma) %>)</td>
   </tbody>
 </table>
+
+<h3>Relations</h3>
+
+<% if @person.relations.any? %>
+<ul>
+  <% @person.relations.each do |relation| %>
+  <li>
+    <%= link_to relation.name, town_person_path(relation.town, relation) %>
+  </li>
+  <% end %>
+</ul>
+<% else %>
+No relations.
+<% end %>

@@ -1,6 +1,7 @@
 class TownsController < ApplicationController
   def new
     @town = Town.new
+    @towns = Town.all
   end
 
   def create

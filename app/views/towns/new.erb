@@ -9,3 +9,15 @@
 
   <%= f.submit %>
 <% end %>
+
+<% if @towns.any? %>
+
+<h1>Check out a pre-generated town</h1>
+
+<ul>
+  <% @towns.each do |town| %>
+  <li><%=link_to town.name, town_path(town) %></li>
+  <% end %>
+</ul>
+
+<% end %>

@@ -18,11 +18,19 @@ class Person < ApplicationRecord
   def self.generate
     race       = Race.generate
     descriptor = ["Feminine", "Masculine"].sample
-    name       = Name.generate(race, descriptor)
+    first_name = Name.first(race, descriptor)
+    last_name  = Name.last(race)
     occupation = Occupation.generate
     level      = Level.generate
 
-    person = new(race: race, descriptor: descriptor, name: name, occupation: occupation, level: level)
+    person = new(
+      race:       race,
+      descriptor: descriptor, 
+      first_name: first_name, 
+      last_name:  last_name,
+      occupation: occupation, 
+      level:      level
+    )
 
     return person if person
     raise "Error creating person"
@@ -36,5 +44,13 @@ class Person < ApplicationRecord
     create_ability_scores!
     ability_scores.generate
     ability_scores.save
+  end
+
+  def relations
+    town.people.where(last_name: last_name) - [self]
+  end
+
+  def name
+    "#{first_name} #{last_name}"
   end
 end
