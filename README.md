@@ -2,7 +2,7 @@
 
 Generates towns for Dungeons and Dragons 5e.
 
-## Getting started
+## Getting started
 
 Clone this repo. Then:
 
@@ -15,10 +15,10 @@ rails s
 
 ## Configuring
 
-- [Names](lib/names.rb)
-- [Races](lib/races.rb)
-- [Classes ('Occupations')](lib/classes.rb)
-- [Levels](lib/levels.rb)
+- [Names](./lib/names.rb)
+- [Races](./lib/races.rb)
+- [Classes ('Occupations')](./lib/classes.rb)
+- [Levels](./lib/levels.rb)
 
 ## Tech
 
