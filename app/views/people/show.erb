@@ -1,0 +1,26 @@
+<h1><%= @person.name %></h1>
+<h2>of <%= @person.town.name %></h2>
+
+<p>Level <%= @person.level %> <%= @person.race %> <%= @person.occupation %></p>
+
+<h3>Ability Scores</h3>
+<table>
+  <thead>
+    <tr>
+      <td>Str</td>
+      <td>Dex</td>
+      <td>Con</td>
+      <td>Int</td>
+      <td>Wis</td>
+      <td>Cha</td>
+    </tr>
+  </thead>
+  <tbody>
+      <td><%= @person.strength %> (<%= modifier(@person.strength) %>)</td>
+      <td><%= @person.dexterity %> (<%= modifier(@person.dexterity) %>)</td>
+      <td><%= @person.constitution %> (<%= modifier(@person.constitution) %>)</td>
+      <td><%= @person.intelligence %> (<%= modifier(@person.intelligence) %>)</td>
+      <td><%= @person.wisdom %> (<%= modifier(@person.wisdom) %>)</td>
+      <td><%= @person.charisma %> (<%= modifier(@person.charisma) %>)</td>
+  </tbody>
+</table>

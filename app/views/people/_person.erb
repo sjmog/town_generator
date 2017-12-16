@@ -1,0 +1,5 @@
+<li>
+  <%= link_to town_person_path(@town, person) do %>
+    <%= person.name %> (Level <%= person.level %> <%= person.race %> <%= person.occupation %>)
+  <% end %>
+</li>

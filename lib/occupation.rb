@@ -1,7 +1,7 @@
 class Occupation
   COMMON_OCCUPATIONS = {
-    1..87 => "Commoner",
-    88..92 => "Warrior",
+    1..85 => "Commoner",
+    86..92 => "Warrior",
     93..96 => "Expert",
     97..99 => "Adept",
     100 => "Aristocrat"

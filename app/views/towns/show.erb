@@ -2,8 +2,12 @@
 
 <p><%= @town.size %></p>
 
-<ul>
-<% @town.people.sort_by { |person| person.level }.each do |person| %>
-  <li><%= person.name %> (Level <%= person.level %> <%= person.race %> <%= person.occupation %>)</li>
+<% if @town.has_guard? %>
+<p><%= link_to "Show town guard", town_people_path(@town, "occupation": ["Warrior", "Fighter"]) %></p>
+<% else %>
+<p><%= @town.name %> has no guard!</p>
 <% end %>
+
+<ul>
+<%= render @town.people %>
 </ul>

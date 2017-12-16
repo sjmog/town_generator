@@ -1,0 +1,11 @@
+<% if viewing_town_guard? %>
+<h1><%= @town.name %> (<%= @town.size %>) Town Guard</h1>
+<p><%= @people.count %> guards</p>
+<% else %>
+<h1><%= @town.name %> Citizens</h1>
+<p><%= @people.count %> citizens</p>
+<% end %>
+
+<ul>
+<%= render @people %>
+</ul>
