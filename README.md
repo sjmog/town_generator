@@ -15,10 +15,10 @@ rails s
 
 ## Configuring
 
-- [Names](/lib/names.rb)
-- [Races](/lib/races.rb)
-- [Classes ('Occupations')](/lib/occupations.rb)
-- [Levels](/lib/levels.rb)
+- [Names](/lib/name.rb)
+- [Races](/lib/race.rb)
+- [Classes ('Occupations')](/lib/occupation.rb)
+- [Levels](/lib/level.rb)
 
 ## Tech
 
