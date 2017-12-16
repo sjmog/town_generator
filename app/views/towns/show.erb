@@ -1,0 +1,9 @@
+<h1><%= @town.name %></h1>
+
+<p><%= @town.size %></p>
+
+<ul>
+<% @town.people.sort_by { |person| person.level }.each do |person| %>
+  <li><%= person.name %> (Level <%= person.level %> <%= person.race %> <%= person.occupation %>)</li>
+<% end %>
+</ul>
