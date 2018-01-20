@@ -7,6 +7,8 @@ require './lib/occupation'
 class Person < ApplicationRecord
   belongs_to :town
   has_one :ability_scores, foreign_key: 'person_id', class_name: 'AbilityScore'
+  has_many :relationships
+  has_many :relations, through: :relationships
   default_scope { order(level: :desc) }
 
   delegate :strength,
@@ -49,8 +51,14 @@ class Person < ApplicationRecord
     ability_scores.save
   end
 
-  def relations
-    town.people.where(last_name: last_name) - [self]
+  def has_relationships?
+    relationships.any?
+  end
+
+  def generate_relationships!
+    (town.people.where(last_name: last_name) - [self]).each do |relation|
+      relationships.generate!(relation)
+    end
   end
 
   def name

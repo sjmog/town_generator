@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171216133452) do
+ActiveRecord::Schema.define(version: 20180120170930) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer "strength"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 20171216133452) do
     t.string "last_name"
     t.integer "age"
     t.index ["town_id"], name: "index_people_on_town_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "relation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "type"
+    t.index ["person_id"], name: "index_relationships_on_person_id"
   end
 
   create_table "towns", force: :cascade do |t|

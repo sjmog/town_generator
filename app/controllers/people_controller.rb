@@ -9,5 +9,6 @@ class PeopleController < ApplicationController
   def show
     @person = Person.find(params[:id])
     @person.generate_ability_scores! unless @person.has_ability_scores?
+    @person.generate_relationships! unless @person.has_relationships?
   end
 end
