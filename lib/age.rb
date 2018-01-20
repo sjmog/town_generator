@@ -8,6 +8,7 @@ class Age
     81..95 => 60..74,
     96..100 => 75..100
   }
+  HUMAN_ADULTHOOD = 18
 
   HALF_ELF = {
     1..5 => 0..16,
@@ -18,6 +19,7 @@ class Age
     81..95 => 110..134,
     96..100 => 135..175
   }
+  HALF_ELF_ADULTHOOD = 35
 
   HALFLING = {
     1..5 => 0..14,
@@ -28,6 +30,7 @@ class Age
     81..95 => 85..109,
     96..100 => 110..180
   }
+  HALFLING_ADULTHOOD = 30
 
   DWARF = {
     1..5 => 0..34,
@@ -38,6 +41,7 @@ class Age
     81..95 => 211..260,
     96..100 => 261..400
   }
+  DWARF_ADULTHOOD = 75
 
   TIEFLING = {
     1..5 => 0..8,
@@ -48,6 +52,7 @@ class Age
     81..95 => 60..74,
     96..100 => 75..100
   }
+  TIEFLING_ADULTHOOD = 18
 
   ELF = {
     1..5 => 0..59,
@@ -58,6 +63,7 @@ class Age
     81..95 => 310..391,
     96..100 => 391..700
   }
+  ELF_ADULTHOOD = 70
 
   HALF_ORC = {
     1..5 => 0..6,
@@ -68,6 +74,7 @@ class Age
     81..95 => 55..64,
     96..100 => 65..75
   }
+  HALF_ORC_ADULTHOOD = 14
 
   DRAGONBORN = {
     1..5 => 0..4,
@@ -78,12 +85,15 @@ class Age
     81..95 => 56..70,
     96..100 => 71..90
   }
+  DRAGONBORN_ADULTHOOD = 15
 
-  def self.generate(race)
+  def self.generate(race, level)
     random_number = Kernel.rand(1..100)
 
     age_range = const_get(race.underscore.upcase).select { |age_index| age_index === random_number }.values.first
 
-    Kernel.rand(age_range)
+    age = Kernel.rand(age_range)
+
+    level > 5 && age < const_get("#{race.underscore.upcase}_ADULTHOOD") ? age + Kernel.rand(age_range) : age
   end
 end

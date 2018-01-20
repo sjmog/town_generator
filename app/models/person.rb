@@ -18,21 +18,21 @@ class Person < ApplicationRecord
 
   def self.generate
     race       = Race.generate
-    age        = Age.generate(race)
+    level      = Level.generate
+    age        = Age.generate(race, level)
     descriptor = ["Feminine", "Masculine"].sample
     first_name = Name.first(race, descriptor)
     last_name  = Name.last(race)
     occupation = Occupation.generate
-    level      = Level.generate
 
     person = new(
       race:       race,
+      level:      level,
       age:        age,
       descriptor: descriptor, 
       first_name: first_name, 
       last_name:  last_name,
-      occupation: occupation, 
-      level:      level
+      occupation: occupation
     )
 
     return person if person
