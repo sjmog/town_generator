@@ -82,7 +82,7 @@ class Age
   def self.generate(race)
     random_number = Kernel.rand(1..100)
 
-    age_range = const_get(race.upcase).select { |age_index| age_index === random_number }.values.first
+    age_range = const_get(race.underscore.upcase).select { |age_index| age_index === random_number }.values.first
 
     Kernel.rand(age_range)
   end
