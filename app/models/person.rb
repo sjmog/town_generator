@@ -1,4 +1,5 @@
 require './lib/race'
+require './lib/age'
 require './lib/name'
 require './lib/level'
 require './lib/occupation'
@@ -17,6 +18,7 @@ class Person < ApplicationRecord
 
   def self.generate
     race       = Race.generate
+    age        = Age.generate(race)
     descriptor = ["Feminine", "Masculine"].sample
     first_name = Name.first(race, descriptor)
     last_name  = Name.last(race)
@@ -25,6 +27,7 @@ class Person < ApplicationRecord
 
     person = new(
       race:       race,
+      age:        age,
       descriptor: descriptor, 
       first_name: first_name, 
       last_name:  last_name,

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20171216133452) do
     t.string "descriptor"
     t.string "first_name"
     t.string "last_name"
+    t.integer "age"
     t.index ["town_id"], name: "index_people_on_town_id"
   end
 
