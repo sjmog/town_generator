@@ -1,6 +1,6 @@
 <h1><%= @town.name %></h1>
 
-<p><%= @town.size %></p>
+<h5><%= @town.size %></h5>
 
 <% if @town.has_guard? %>
 <p><%= link_to "Show town guard", town_people_path(@town, "occupation": ["Warrior", "Fighter"]) %></p>

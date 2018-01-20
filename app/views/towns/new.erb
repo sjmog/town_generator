@@ -1,23 +1,26 @@
-<h1>Make a new town</h1>
+<div>
+  <h1>Town Generator</h1>
 
-<%= form_for @town do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <h5>Make a new town</h5>
 
-  <%= f.label :size %>
-  <%= f.select :size, ["Hamlet", "Village", "Small Town", "Large Town", "Small City", "Large City", "Metropolis"] %>
+  <%= form_for @town do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.label :size %>
+    <%= f.select :size, ["Hamlet", "Village", "Small Town", "Large Town", "Small City", "Large City", "Metropolis"] %>
 
-<% if @towns.any? %>
-
-<h1>Check out a pre-generated town</h1>
-
-<ul>
-  <% @towns.each do |town| %>
-  <li><%=link_to town.name, town_path(town) %></li>
+    <%= f.submit %>
   <% end %>
-</ul>
 
-<% end %>
+  <% if @towns.any? %>
+    <h5>Check out a pre-generated town</h5>
+
+    <ul>
+      <% @towns.each do |town| %>
+      <li><%=link_to town.name, town_path(town) %></li>
+      <% end %>
+    </ul>
+
+  <% end %>
+</div>
