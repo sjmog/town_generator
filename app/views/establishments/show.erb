@@ -1,9 +1,11 @@
 <h1><%= @establishment.name %></h1>
 
+<h5><%= @establishment.type %> (<%= @establishment.people.count %> workers)</h5>
+
 <% if @establishment.people.any? %>
-  <h5>People</h5>
+  <h3>Workers</h3>
 
   <ul>
-    <%= render @establishment.people %>
+    <%= render @establishment.people, job_titles: true %>
   </ul>
 <% end %>

@@ -34,7 +34,7 @@
     <p><%= @person.job_title %> at <%= @person.establishment.name %>.</p>
 
     <% if @person.colleagues.any? %>
-    <h5>Colleagues</h5>
+    <h4>Colleagues</h4>
     <ul>
       <%= render @person.colleagues, job_titles: true %>
     </ul>
