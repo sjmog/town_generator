@@ -17,7 +17,7 @@ class Town < ApplicationRecord
     name = params[:name]
     size = params[:size]
     establishments = Industry.generate(size)
-    people = Population.generate(size)
+    people = Population.generate(size, establishments)
 
     new(name: name, size: size, people: people, establishments: establishments)
   end

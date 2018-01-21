@@ -26,6 +26,21 @@
     </tbody>
   </table>
 
+  <h3>Job</h3>
+
+  <% if @person.establishment.nil? %>
+    <p>Unemployed.</p>
+  <% else %>
+    <p><%= @person.job_title %> at <%= @person.establishment.name %>.</p>
+
+    <% if @person.colleagues.any? %>
+    <h5>Colleagues</h5>
+    <ul>
+      <%= render @person.colleagues, job_titles: true %>
+    </ul>
+    <% end %>
+  <% end %>
+
   <pre></pre>
 
   <h3>Relations</h3>

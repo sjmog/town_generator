@@ -3,9 +3,11 @@ require './lib/age'
 require './lib/name'
 require './lib/level'
 require './lib/occupation'
+require './lib/job_title'
 
 class Person < ApplicationRecord
   belongs_to :town
+  belongs_to :establishment, validate: false
   has_one :ability_scores, foreign_key: 'person_id', class_name: 'AbilityScore'
   has_many :relationships
   has_many :relations, through: :relationships
@@ -18,7 +20,7 @@ class Person < ApplicationRecord
            :wisdom,
            :charisma, to: :ability_scores
 
-  def self.generate
+  def self.generate(establishment = nil)
     race       = Race.generate
     age        = Age.generate(race)
     level      = Level.generate(age, race)
@@ -36,6 +38,11 @@ class Person < ApplicationRecord
       last_name:  last_name,
       occupation: occupation
     )
+
+    if establishment
+      person.establishment = establishment
+      person.job_title = JobTitle.generate(establishment)
+    end
 
     return person if person
     raise "Error creating person"
@@ -63,5 +70,9 @@ class Person < ApplicationRecord
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def colleagues
+    town.people.where(establishment: establishment) - [self]
   end
 end

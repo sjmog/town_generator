@@ -9,14 +9,20 @@ class Population
     "Metropolis" => 6_000...10_000
   }
 
+  EMPLOYMENT_FRACTION = 0.65..0.95
+
   attr_reader :people
 
-  def initialize(town_size)
-    @people = Array.new(population_size(town_size)) { Person.generate }
+  def initialize(town_size, establishments)
+    population = population_size(town_size)
+    employed = Array.new(population * Kernel.rand(EMPLOYMENT_FRACTION)) { Person.generate(establishments.sample) }
+    unemployed = Array.new(population - employed.length) { Person.generate }
+
+    @people = employed.concat(unemployed)
   end
 
-  def self.generate(town_size)
-    new(town_size).people
+  def self.generate(town_size, establishments)
+    new(town_size, establishments).people
   end
 
   private

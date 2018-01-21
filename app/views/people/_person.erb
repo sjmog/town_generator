@@ -1,5 +1,10 @@
+<% local_assigns[:job_titles] ||= false %>
+
 <li>
   <%= link_to town_person_path(@town, person) do %>
+  <% if job_titles %>
+    <em><%= person.job_title %>,</em>
+  <% end %>
     <%= person.name %> (Level <%= person.level %> <%= person.race %> <%= person.occupation %>)
   <% end %>
 </li>
