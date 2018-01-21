@@ -4,6 +4,8 @@ class AbilityScore < ApplicationRecord
   BASE_SCORE = 10
   DEFAULT_RANGE = -2..6
 
+  ALL_ABILITIES = [:strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma]
+
   PRIORITIES = {
     "Warrior"   => [:strength, :constitution, :dexterity],
     "Expert"    => [:dexterity, :intelligence],
@@ -27,7 +29,13 @@ class AbilityScore < ApplicationRecord
   end
 
   def generate
-    unallocated_abilities = [:strength, :dexterity, :constitution, :intelligence, :wisdom, :charisma] - priorities
+    if Age.child?(person.age, person.race)
+      [3..6, 3..11, 3..6, 3..6, 3..8, 3..11].map { |score_range| Kernel.rand(score_range) }.zip(ALL_ABILITIES).each do |score, ability|
+        self[ability] = score
+      end
+    end
+
+    unallocated_abilities = ALL_ABILITIES - priorities
 
     base_scores.zip(priorities).each do |score, maybe_ability|
       if maybe_ability.nil?
