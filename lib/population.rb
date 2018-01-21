@@ -13,7 +13,6 @@ class Population
 
   def initialize(town_size)
     @people = Array.new(population_size(town_size)) { Person.generate }
-    p @people
   end
 
   def self.generate(town_size)
