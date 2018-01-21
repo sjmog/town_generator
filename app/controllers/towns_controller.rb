@@ -1,7 +1,7 @@
 class TownsController < ApplicationController
   def new
     @town = Town.new
-    @towns = Town.all
+    @towns = Town.by_size
   end
 
   def create

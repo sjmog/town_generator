@@ -8,19 +8,22 @@
     <%= f.text_field :name %>
 
     <%= f.label :size %>
-    <%= f.select :size, ["Hamlet", "Village", "Small Town", "Large Town", "Small City", "Large City", "Metropolis"] %>
+    <%= f.select :size, Town::SIZES %>
 
     <%= f.submit %>
   <% end %>
 
   <% if @towns.any? %>
-    <h5>Check out a pre-generated town</h5>
+    <h2>Pre-generated towns</h2>
 
-    <ul>
-      <% @towns.each do |town| %>
-      <li><%=link_to town.name, town_path(town) %> (<%= town.size %>)</li>
+      <% @towns.each do |size, towns| %>
+        <h3><%= size.pluralize %></h3>
+        <ul>
+          <% towns.each do |town| %>
+          <li><%=link_to town.name, town_path(town) %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
 
   <% end %>
 </div>
