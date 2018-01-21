@@ -1,9 +1,9 @@
 <% if viewing_town_guard? %>
 <h1><%= @town.name %> (<%= @town.size %>) Town Guard</h1>
-<p><%= @people.count %> guards</p>
+<h5><%= @people.count %> guards</h5>
 <% else %>
 <h1><%= @town.name %> Citizens</h1>
-<p><%= @people.count %> citizens</p>
+<h5><%= @people.count %> citizens</h5>
 <% end %>
 
 <ul>

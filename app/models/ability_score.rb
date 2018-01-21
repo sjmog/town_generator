@@ -29,11 +29,7 @@ class AbilityScore < ApplicationRecord
   end
 
   def generate
-    if Age.child?(person.age, person.race)
-      [3..6, 3..11, 3..6, 3..6, 3..8, 3..11].map { |score_range| Kernel.rand(score_range) }.zip(ALL_ABILITIES).each do |score, ability|
-        self[ability] = score
-      end
-    end
+    return generate_child if person.child?
 
     unallocated_abilities = ALL_ABILITIES - priorities
 
@@ -49,6 +45,13 @@ class AbilityScore < ApplicationRecord
   end
 
   private
+
+  def generate_child
+    [3..6, 3..11, 3..6, 3..6, 3..8, 3..11]
+      .map { |score_range| Kernel.rand(score_range) }
+      .zip(ALL_ABILITIES)
+      .each { |score, ability| self[ability] = score }
+  end
 
   def base_scores
     root_scores = Array.new(6) { BASE_SCORE + Kernel.rand(DEFAULT_RANGE) }.sort.reverse

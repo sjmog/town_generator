@@ -7,7 +7,7 @@ require './lib/job_title'
 
 class Person < ApplicationRecord
   belongs_to :town
-  belongs_to :establishment, validate: false
+  belongs_to :establishment, required: false
   has_one :ability_scores, foreign_key: 'person_id', class_name: 'AbilityScore'
   has_many :relationships
   has_many :relations, through: :relationships
@@ -19,34 +19,6 @@ class Person < ApplicationRecord
            :intelligence,
            :wisdom,
            :charisma, to: :ability_scores
-
-  def self.generate(establishment = nil)
-    race       = Race.generate
-    age        = Age.generate(race)
-    level      = Level.generate(age, race)
-    descriptor = ["Feminine", "Masculine"].sample
-    first_name = Name.first(race, descriptor)
-    last_name  = Name.last(race)
-    occupation = Occupation.generate
-
-    person = new(
-      race:       race,
-      level:      level,
-      age:        age,
-      descriptor: descriptor, 
-      first_name: first_name, 
-      last_name:  last_name,
-      occupation: occupation
-    )
-
-    if establishment
-      person.establishment = establishment
-      person.job_title = JobTitle.generate(establishment)
-    end
-
-    return person if person
-    raise "Error creating person"
-  end
 
   def has_ability_scores?
     ability_scores && ability_scores.complete?
@@ -74,5 +46,9 @@ class Person < ApplicationRecord
 
   def colleagues
     town.people.where(establishment: establishment) - [self]
+  end
+
+  def child?
+    self.child
   end
 end

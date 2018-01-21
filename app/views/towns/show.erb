@@ -3,10 +3,15 @@
 <h5><%= @town.size %></h5>
 
 <% if @town.has_guard? %>
-<p><%= link_to "Show town guard", town_people_path(@town, "occupation": ["Warrior", "Fighter"]) %></p>
+  <p>
+    <%= link_to "Show town guard", town_people_path(@town, "occupation": ["Warrior", "Fighter"]) %>
+  </p>
 <% else %>
 <p><%= @town.name %> has no guard!</p>
 <% end %>
+<p>
+  <%= link_to "Show children", town_people_path(@town, child: true) %>
+</p>
 
 <% if @town.establishments.any? %>
 <ul>

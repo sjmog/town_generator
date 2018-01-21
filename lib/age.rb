@@ -9,10 +9,16 @@ class Age
     'VENERABLE'  => 80..100
   }
 
-  HUMAN_DISTRIBUTION = {
+  HUMAN_CHILD_DISTRIBUTION = {
     1..5    => HUMAN['BABY'], # 5%
     6..15   => HUMAN['CHILD'], # 10%
-    16..30  => HUMAN['ADOLESCENT'], # 15%
+  }
+
+  HUMAN_ADOLESCENT_DISTRIBUTION = {
+    16..30  => HUMAN['ADOLESCENT'] # 15%
+  }
+
+  HUMAN_ADULT_DISTRIBUTION = {
     31..60  => HUMAN['ADULT'], # 30%
     61..80  => HUMAN['MIDDLE_AGE'], # 20%
     81..95  => HUMAN['OLD_AGE'], # 15%
@@ -29,10 +35,16 @@ class Age
     'VENERABLE'  => 140..175
   }
 
-  HALF_ELF_DISTRIBUTION = {
+  HALF_ELF_CHILD_DISTRIBUTION = {
     1..5    => HALF_ELF['BABY'], # 5%
     6..15   => HALF_ELF['CHILD'], # 10%
+  }
+
+  HALF_ELF_ADOLESCENT_DISTRIBUTION = {
     16..30  => HALF_ELF['ADOLESCENT'], # 15%
+  }
+
+  HALF_ELF_ADULT_DISTRIBUTION = {
     31..60  => HALF_ELF['ADULT'], # 30%
     61..80  => HALF_ELF['MIDDLE_AGE'], # 20%
     81..95  => HALF_ELF['OLD_AGE'], # 15%
@@ -49,10 +61,16 @@ class Age
     'VENERABLE'  => 100..180
   }
 
-  HALFLING_DISTRIBUTION = {
+  HALFLING_CHILD_DISTRIBUTION = {
     1..5    => HALFLING['BABY'], # 5%
     6..15   => HALFLING['CHILD'], # 10%
-    16..30  => HALFLING['ADOLESCENT'], # 15%
+  }
+
+  HALFLING_ADOLESCENT_DISTRIBUTION = {
+    16..30  => HALFLING['ADOLESCENT'] # 15%
+  }
+
+  HALFLING_ADULT_DISTRIBUTION = {
     31..60  => HALFLING['ADULT'], # 30%
     61..80  => HALFLING['MIDDLE_AGE'], # 20%
     81..95  => HALFLING['OLD_AGE'], # 15%
@@ -69,10 +87,16 @@ class Age
     'VENERABLE'  => 250..400
   }
 
-  DWARF_DISTRIBUTION = {
+  DWARF_CHILD_DISTRIBUTION = {
     1..5    => DWARF['BABY'], # 5%
     6..15   => DWARF['CHILD'], # 10%
-    16..30  => DWARF['ADOLESCENT'], # 15%
+  }
+
+  DWARF_ADOLESCENT_DISTRIBUTION = {
+    16..30  => DWARF['ADOLESCENT'] # 15%
+  }
+
+  DWARF_ADULT_DISTRIBUTION = {
     31..60  => DWARF['ADULT'], # 30%
     61..80  => DWARF['MIDDLE_AGE'], # 20%
     81..95  => DWARF['OLD_AGE'], # 15%
@@ -89,10 +113,16 @@ class Age
     'VENERABLE'  => 80..100
   }
 
-  TIEFLING_DISTRIBUTION = {
+  TIEFLING_CHILD_DISTRIBUTION = {
     1..5    => TIEFLING['BABY'], # 5%
     6..15   => TIEFLING['CHILD'], # 10%
-    16..30  => TIEFLING['ADOLESCENT'], # 15%
+  }
+
+  TIEFLING_ADOLESCENT_DISTRIBUTION = {
+    16..30  => TIEFLING['ADOLESCENT'] # 15%
+  }
+
+  TIEFLING_ADULT_DISTRIBUTION = {
     31..60  => TIEFLING['ADULT'], # 30%
     61..80  => TIEFLING['MIDDLE_AGE'], # 20%
     81..95  => TIEFLING['OLD_AGE'], # 15%
@@ -109,10 +139,16 @@ class Age
     'VENERABLE'  => 350..700
   }
 
-  ELF_DISTRIBUTION = {
+  ELF_CHILD_DISTRIBUTION = {
     1..5    => ELF['BABY'], # 5%
     6..15   => ELF['CHILD'], # 10%
-    16..30  => ELF['ADOLESCENT'], # 15%
+  }
+
+  ELF_ADOLESCENT_DISTRIBUTION = {
+    16..30  => ELF['ADOLESCENT'] # 15%
+  }
+
+  ELF_ADULT_DISTRIBUTION = {
     31..60  => ELF['ADULT'], # 30%
     61..80  => ELF['MIDDLE_AGE'], # 20%
     81..95  => ELF['OLD_AGE'], # 15%
@@ -129,10 +165,16 @@ class Age
     'VENERABLE'  => 60..75
   }
 
-  HALF_ORC_DISTRIBUTION = {
+  HALF_ORC_CHILD_DISTRIBUTION = {
     1..5    => HALF_ORC['BABY'], # 5%
     6..15   => HALF_ORC['CHILD'], # 10%
-    16..30  => HALF_ORC['ADOLESCENT'], # 15%
+  }
+
+  HALF_ORC_ADOLESCENT_DISTRIBUTION = {
+    16..30  => HALF_ORC['ADOLESCENT'] # 15%
+  }
+
+  HALF_ORC_ADULT_DISTRIBUTION = {
     31..60  => HALF_ORC['ADULT'], # 30%
     61..80  => HALF_ORC['MIDDLE_AGE'], # 20%
     81..95  => HALF_ORC['OLD_AGE'], # 15%
@@ -149,34 +191,34 @@ class Age
     'VENERABLE'  => 75..90
   }
 
-  DRAGONBORN_DISTRIBUTION = {
+  DRAGONBORN_CHILD_DISTRIBUTION = {
     1..5    => DRAGONBORN['BABY'], # 5%
     6..15   => DRAGONBORN['CHILD'], # 10%
-    16..30  => DRAGONBORN['ADOLESCENT'], # 15%
+  }
+
+  DRAGONBORN_ADOLESCENT_DISTRIBUTION = {
+    16..30  => DRAGONBORN['ADOLESCENT'] # 15%
+  }
+
+  DRAGONBORN_ADULT_DISTRIBUTION = {
     31..60  => DRAGONBORN['ADULT'], # 30%
     61..80  => DRAGONBORN['MIDDLE_AGE'], # 20%
     81..95  => DRAGONBORN['OLD_AGE'], # 15%
     96..100 => DRAGONBORN['VENERABLE'] # 5%
   }
 
-  def self.generate(race)
-    random_number = Kernel.rand(1..100)
+  STAGES_TO_RANGES = {
+    'CHILD' => 1..15,
+    'ADOLESCENT' => 16..30,
+    'ADULT' => 31..100
+  }
 
-    age_range = const_get("#{race.underscore.upcase}_DISTRIBUTION").select { |age_index| age_index === random_number }.values.first
-    
+  def self.generate(race, stage = 'ADULT')
+    random_number = Kernel.rand(STAGES_TO_RANGES[stage])
+
+    age_range = const_get("#{race.underscore.upcase}_#{stage}_DISTRIBUTION").select { |age_index| age_index === random_number }.values.first
+
     Kernel.rand(age_range)
-  end
-
-  def self.child?(age, race)
-    age < lowest_age_for(race, 'ADOLESCENT')
-  end
-
-  def self.adolescent?(age, race)
-    age < lowest_age_for(race, 'ADULT') && !child?(age, race)
-  end
-
-  def self.adult?(age, race)
-    age >= lowest_age_for(race, 'ADULT')
   end
 
   def self.lowest_age_for(race, stage)

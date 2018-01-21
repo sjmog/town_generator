@@ -11,10 +11,7 @@ class Level
     100 => Kernel.rand(7..20)
   }
   
-  def self.generate(age, race)
-    return 1 if Age.child?(age, race)
-    return Kernel.rand(1..2) if Age.adolescent?(age, race)
-
+  def self.generate(race)
     random_number = Kernel.rand(1..100)
     
     LEVELS.select { |level_index| level_index === random_number }.values.first

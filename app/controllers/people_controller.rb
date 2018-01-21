@@ -4,6 +4,7 @@ class PeopleController < ApplicationController
     @people = @town.people
 
     @people = @people.where(occupation: params[:occupation]) if params[:occupation]
+    @people = @people.where(child: true) if params[:child]
   end
 
   def show

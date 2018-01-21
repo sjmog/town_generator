@@ -1,6 +1,6 @@
 <div class="phb__columns">
   <h1><%= @person.name %></h1>
-  <h5>of <%= @person.town.name %></h5>
+  <h5>of <%= link_to @person.town.name, @person.town %></h5>
 
   <p>Level <%= @person.level %> <%= @person.race %> <%= @person.occupation %>, aged <%= @person.age %></p>
 
