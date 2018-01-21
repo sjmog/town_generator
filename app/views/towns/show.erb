@@ -8,6 +8,12 @@
 <p><%= @town.name %> has no guard!</p>
 <% end %>
 
+<% if @town.establishments.any? %>
+<ul>
+  <%= render @town.establishments %>
+</ul>
+<% end %>
+
 <ul>
 <%= render @town.people %>
 </ul>

@@ -18,7 +18,7 @@
 
     <ul>
       <% @towns.each do |town| %>
-      <li><%=link_to town.name, town_path(town) %></li>
+      <li><%=link_to town.name, town_path(town) %> (<%= town.size %>)</li>
       <% end %>
     </ul>
 

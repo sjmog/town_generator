@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180120170930) do
+ActiveRecord::Schema.define(version: 20180121173853) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer "strength"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20180120170930) do
     t.index ["person_id"], name: "index_ability_scores_on_person_id"
   end
 
+  create_table "establishments", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "town_id"
+    t.index ["town_id"], name: "index_establishments_on_town_id"
+  end
+
   create_table "people", force: :cascade do |t|
     t.integer "town_id"
     t.datetime "created_at", null: false
@@ -36,6 +45,8 @@ ActiveRecord::Schema.define(version: 20180120170930) do
     t.string "first_name"
     t.string "last_name"
     t.integer "age"
+    t.integer "establishment_id"
+    t.index ["establishment_id"], name: "index_people_on_establishment_id"
     t.index ["town_id"], name: "index_people_on_town_id"
   end
 

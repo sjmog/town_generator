@@ -1,0 +1,9 @@
+<h1><%= @establishment.name %></h1>
+
+<% if @establishment.people.any? %>
+  <h5>People</h5>
+
+  <ul>
+    <%= render @establishment.people %>
+  </ul>
+<% end %>
