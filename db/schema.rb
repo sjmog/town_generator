@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180121202910) do
+ActiveRecord::Schema.define(version: 20180121233359) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer "strength"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180121202910) do
     t.integer "establishment_id"
     t.string "job_title"
     t.boolean "child"
+    t.integer "hit_points"
     t.index ["establishment_id"], name: "index_people_on_establishment_id"
     t.index ["town_id"], name: "index_people_on_town_id"
   end

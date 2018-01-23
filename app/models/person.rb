@@ -4,6 +4,7 @@ require './lib/name'
 require './lib/level'
 require './lib/occupation'
 require './lib/job_title'
+require './lib/hit_points'
 
 class Person < ApplicationRecord
   belongs_to :town
@@ -38,6 +39,14 @@ class Person < ApplicationRecord
     (town.people.where(last_name: last_name) - [self]).each do |relation|
       relationships.generate!(relation)
     end
+  end
+
+  def has_hit_points?
+    !hit_points.nil?
+  end
+
+  def generate_hit_points!
+    update(hit_points: HitPoints.for(self))
   end
 
   def name
